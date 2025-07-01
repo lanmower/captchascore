@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Player with reCAPTCHA v3 - Google Apps Script</title>
+    <script src="https://www.google.com/recaptcha/api.js?render=6LdpPnQrAAAAAOZJpoYQBVjzmhORG2HBZ8ZbFxEO"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .player {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 10px 0;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .play-btn {
+            background: #4CAF50;
+            color: white;
+        }
+        .play-btn:disabled {
+            background: #ccc;
+        }
+        .stats {
+            margin-top: 20px;
+            padding: 10px;
+            background: #f5f5f5;
+            border-radius: 4px;
+        }
+        .song {
+            margin: 10px 0;
+            padding: 15px;
+            border: 1px solid #eee;
+            border-radius: 4px;
+        }
+        .song-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .play-count {
+            color: #666;
+            font-size: 14px;
+        }
+        .setup-info {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .setup-info h3 {
+            margin-top: 0;
+            color: #1976d2;
+        }
+        .setup-info code {
+            background: #f5f5f5;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <h1>Music Player with Bot Detection - Google Apps Script Version</h1>
+    
+    <div class="setup-info">
+        <h3>Setup Instructions</h3>
+        <ol>
+            <li>Deploy the <code>google-apps-script.js</code> file as a web app in Google Apps Script</li>
+            <li>Update the <code>WEB_APP_URL</code> in <code>music-player-gas.js</code> with your deployed URL</li>
+            <li>Update the <code>MUSIC_FILES</code> array in the Google Apps Script with your music metadata</li>
+            <li>This version works without needing a Node.js server - everything runs on Google's infrastructure</li>
+        </ol>
+    </div>
+    
+    <div class="player" id="music-player">
+        <div class="loading">Loading music files...</div>
+    </div>
+
+    <div class="stats">
+        <h3>Bot Detection Stats</h3>
+        <p>Total play attempts: <span id="total-attempts">0</span></p>
+        <p>Verified human plays: <span id="verified-plays">0</span></p>
+        <p>Blocked bot plays: <span id="blocked-plays">0</span></p>
+        <p>Current detection score threshold: 0.5</p>
+    </div>
+
+    <script src="music-player-gas.js"></script>
+</body>
+</html>
