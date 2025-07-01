@@ -196,7 +196,7 @@ class MusicPlayerWithCaptcha {
 
     async loadMusicFiles() {
         try {
-            const response = await fetch('./music-list.json');
+            const response = await fetch('/api/music-list');
             this.musicFiles = await response.json();
             this.renderMusicPlayer();
         } catch (error) {
