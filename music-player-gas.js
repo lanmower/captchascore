@@ -62,18 +62,16 @@ class MusicPlayerWithCaptchaGAS {
 
     async verifyWithGoogleScript(token, songId, action) {
         try {
-            const response = await fetch(GAS_CONFIG.WEB_APP_URL, {
-                method: 'POST',
-                mode: 'cors',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    action: 'verify-play',
-                    token: token,
-                    songId: songId.toString(),
-                    action: action
-                })
+            const params = new URLSearchParams({
+                action: 'verify-play',
+                token: token,
+                songId: songId.toString(),
+                expectedAction: action
+            });
+
+            const response = await fetch(`${GAS_CONFIG.WEB_APP_URL}?${params.toString()}`, {
+                method: 'GET',
+                mode: 'cors'
             });
 
             if (!response.ok) {
@@ -262,14 +260,9 @@ class MusicPlayerWithCaptchaGAS {
 
     async resetStats() {
         try {
-            const response = await fetch(GAS_CONFIG.WEB_APP_URL, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    action: 'reset-stats'
-                })
+            const response = await fetch(`${GAS_CONFIG.WEB_APP_URL}?action=reset-stats`, {
+                method: 'GET',
+                mode: 'cors'
             });
 
             if (response.ok) {

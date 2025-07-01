@@ -92,6 +92,10 @@ function doGet(e) {
         return handleGetStats();
       case 'song-stats':
         return handleSongStats(e.parameter.songId);
+      case 'verify-play':
+        return handleVerifyPlayGet(e.parameter);
+      case 'reset-stats':
+        return handleResetStats();
       default:
         return createResponse(400, { error: 'Invalid action' });
     }
@@ -99,6 +103,23 @@ function doGet(e) {
     console.error('doGet error:', error);
     return createResponse(500, { error: 'Internal server error' });
   }
+}
+
+function handleVerifyPlayGet(params) {
+  const { token, songId, expectedAction } = params;
+  
+  if (!token || !songId || !expectedAction) {
+    return createResponse(400, {
+      success: false,
+      error: 'Missing required parameters'
+    });
+  }
+  
+  return handleVerifyPlay({
+    token: token,
+    songId: songId,
+    action: expectedAction
+  });
 }
 
 function handleVerifyPlay(data) {
