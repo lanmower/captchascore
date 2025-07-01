@@ -1,0 +1,20 @@
+title: Music Player with reCAPTCHA v3
+description: A music player that uses reCAPTCHA v3 to detect bots and filter play counts
+theme: minima
+
+plugins:
+  - jekyll-sitemap
+  - jekyll-feed
+
+include:
+  - music/
+  - config.js
+  - music-player.js
+  - music-list.json
+
+exclude:
+  - server.js
+  - package.json
+  - package-lock.json
+  - node_modules/
+  - .gitignore

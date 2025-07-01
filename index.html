@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Player with reCAPTCHA v3</title>
+    <script src="https://www.google.com/recaptcha/api.js?render=YOUR_SITE_KEY"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .player {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 10px 0;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .play-btn {
+            background: #4CAF50;
+            color: white;
+        }
+        .play-btn:disabled {
+            background: #ccc;
+        }
+        .stats {
+            margin-top: 20px;
+            padding: 10px;
+            background: #f5f5f5;
+            border-radius: 4px;
+        }
+        .song {
+            margin: 10px 0;
+            padding: 15px;
+            border: 1px solid #eee;
+            border-radius: 4px;
+        }
+        .song-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .play-count {
+            color: #666;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Music Player with Bot Detection</h1>
+    
+    <div class="player" id="music-player">
+        <div class="loading">Loading music files...</div>
+    </div>
+
+    <div class="stats">
+        <h3>Bot Detection Stats</h3>
+        <p>Total play attempts: <span id="total-attempts">0</span></p>
+        <p>Verified human plays: <span id="verified-plays">0</span></p>
+        <p>Blocked bot plays: <span id="blocked-plays">0</span></p>
+        <p>Current detection score threshold: 0.5</p>
+    </div>
+
+    <script src="music-player.js"></script>
+</body>
+</html>
