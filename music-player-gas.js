@@ -64,6 +64,7 @@ class MusicPlayerWithCaptchaGAS {
         try {
             const response = await fetch(GAS_CONFIG.WEB_APP_URL, {
                 method: 'POST',
+                mode: 'cors',
                 headers: {
                     'Content-Type': 'application/json',
                 },
@@ -76,11 +77,12 @@ class MusicPlayerWithCaptchaGAS {
             });
 
             if (!response.ok) {
-                console.warn('Google Apps Script verification failed, using fallback scoring');
+                console.warn('Google Apps Script verification failed (HTTP ' + response.status + '), using fallback scoring');
                 return this.generateFallbackScore();
             }
 
             const data = await response.json();
+            console.log('Google Apps Script response:', data);
             
             return {
                 success: data.success,
