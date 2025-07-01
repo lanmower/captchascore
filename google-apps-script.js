@@ -305,13 +305,8 @@ function createResponse(statusCode, data) {
   const response = ContentService.createTextOutput(JSON.stringify(data));
   response.setMimeType(ContentService.MimeType.JSON);
   
-  // Add CORS headers
-  if (statusCode !== 200) {
-    // For non-200 responses, we still return 200 but include error info in body
-    // This is because Google Apps Script web apps always return 200
-    return response;
-  }
-  
+  // Google Apps Script automatically handles CORS for web apps
+  // No additional headers needed
   return response;
 }
 
